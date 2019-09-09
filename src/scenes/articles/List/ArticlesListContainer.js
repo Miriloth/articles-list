@@ -1,20 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import ArticlesList from './ArticlesList';
+import { fetchArticles } from './actions';
 
-const ArticlesListContainer = () => (
-  <ArticlesList />
-);
+const ArticlesListContainer = ({ onFetchArticles, selectedCategories }) => {
+  useEffect(() => {
+    onFetchArticles();
+  }, [onFetchArticles, selectedCategories]);
 
-ArticlesListContainer.propTypes = {};
-ArticlesListContainer.defaultProps = {};
+  return (
+    <ArticlesList />
+  );
+};
 
-function mapStateToProps({ articles: { list } }) {
+function mapStateToProps({ articles: { list: { selectedCategories } } }) {
   return {
-    list,
+    selectedCategories,
   }
 }
 
-export default connect(mapStateToProps, null)(ArticlesListContainer);
+function mapDispatchToProps(dispatch) {
+  return {
+    onFetchArticles: () => dispatch(fetchArticles()),
+  }
+}
+
+ArticlesListContainer.propTypes = {
+  onFetchArticles: PropTypes.func.isRequired,
+};
+ArticlesListContainer.defaultProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ArticlesListContainer);
