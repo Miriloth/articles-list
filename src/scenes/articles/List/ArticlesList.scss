@@ -1,0 +1,15 @@
+@import '../../../common_styles/mixins';
+
+.articles-list-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .articles-list {
+    order: 3;
+
+    @include phone {
+      flex: 100%;
+    }
+  }
+}

@@ -13,6 +13,7 @@ const initialState = {
   entries: {},
   articlesIds: [],
   didInvalidate: true,
+  error: null,
   categories: articleCategoriesList,
   sorts: sortingOptions,
   selectedCategories: getDefaultCategories(),
@@ -24,6 +25,7 @@ const articlesListReducer = (state = initialState, action) => {
     case actions.FETCH_ARTICLES_REQUEST: {
       return Object.assign({}, state, {
         isFetching: true,
+        error: null,
       });
     }
 

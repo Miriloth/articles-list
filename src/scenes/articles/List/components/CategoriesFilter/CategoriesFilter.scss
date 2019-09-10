@@ -1,0 +1,9 @@
+@import '../../../../../common_styles/mixins';
+
+.categories-filter {
+  order: 2;
+
+  @include phone {
+    order: 1;
+  }
+}

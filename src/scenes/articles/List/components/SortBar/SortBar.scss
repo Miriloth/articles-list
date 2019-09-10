@@ -1,0 +1,11 @@
+@import '../../../../../common_styles/mixins';
+
+.sort-bar {
+  order: 1;
+  width: 100%;
+
+  @include phone {
+    order: 2;
+    flex: 1;
+  }
+}

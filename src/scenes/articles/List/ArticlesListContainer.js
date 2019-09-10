@@ -6,22 +6,49 @@ import ArticlesList from './ArticlesList';
 import { fetchArticles } from './actions';
 import { articleModel } from '../../../models/article';
 
-const ArticlesListContainer = ({ onFetchArticles, selectedCategories, articles }) => {
+const ArticlesListContainer = ({
+  onFetchArticles,
+  articles,
+  categories,
+  sorts,
+  selectedCategories,
+  selectedSort
+}) => {
   useEffect(() => {
     onFetchArticles();
   }, [onFetchArticles, selectedCategories]);
 
   return (
-    <ArticlesList articles={articles} />
+    <ArticlesList
+      articles={articles}
+      categories={categories}
+      sorts={sorts}
+      selectedCategories={selectedCategories}
+      selectedSort={selectedSort}
+    />
   );
 };
 
-function mapStateToProps({ articles: { list: { selectedCategories, entries, articlesIds } } }) {
+function mapStateToProps({
+  articles: {
+    list: {
+      entries,
+      articlesIds,
+      categories,
+      sorts,
+      selectedCategories,
+      selectedSort,
+    }
+  }
+}) {
   const articles = articlesIds.map(articleId => entries[articleId]);
 
   return {
     selectedCategories,
     articles,
+    categories,
+    sorts,
+    selectedSort,
   }
 }
 
