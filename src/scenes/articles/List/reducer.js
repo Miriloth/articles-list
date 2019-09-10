@@ -1,11 +1,11 @@
 import * as actions from './actions';
 import get from 'lodash/get';
+import xor from 'lodash/xor';
 
 import { articleCategoriesList } from '../utils/articleCategories';
 import { sortingOptions } from '../utils/sortingOptions';
 import { arrayToCollectionById } from '../../../helpers';
 
-const getDefaultCategories = () => articleCategoriesList;
 const getDefaultSort = () => sortingOptions[0];
 
 const initialState = {
@@ -16,7 +16,7 @@ const initialState = {
   error: null,
   categories: articleCategoriesList,
   sorts: sortingOptions,
-  selectedCategories: getDefaultCategories(),
+  selectedCategories: [],
   selectedSort: getDefaultSort(),
 };
 
@@ -43,6 +43,12 @@ const articlesListReducer = (state = initialState, action) => {
         isFetching: false,
         error: action.error,
       });
+    }
+
+    case actions.TOGGLE_CATEGORY_FILTER: {
+      return Object.assign({}, state, {
+        selectedCategories: xor(state.selectedCategories, [action.categoryFilter]),
+      })
     }
 
     default:

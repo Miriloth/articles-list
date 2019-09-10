@@ -3,17 +3,21 @@ import PropTypes from 'prop-types';
 
 import './CategoriesFilter.scss';
 
-class CategoriesFilter extends Component {
-  render() {
-    return (
-      <div
-        className="categories-filter"
-      >
-        Filters
+const CategoriesFilter = ({
+  categories,
+  selectedCategories,
+  onToggleCategoryFilter,
+}) => (
+  <div
+    className="categories-filter"
+  >
+    {categories.map(category => (
+      <div onClick={() => onToggleCategoryFilter(category)}>
+        {category}
       </div>
-    );
-  }
-}
+    ))}
+  </div>
+);
 
 CategoriesFilter.propTypes = {};
 CategoriesFilter.defaultProps = {};

@@ -13,18 +13,25 @@ const ArticlesList = ({
   sorts,
   selectedCategories,
   selectedSort,
+  onToggleCategoryFilter,
 }) => (
   <div className="articles-list-wrapper">
     <CategoriesFilter
       categories={categories}
       selectedCategories={selectedCategories}
+      onToggleCategoryFilter={onToggleCategoryFilter}
     />
     <SortBar
       sorts={sorts}
       selectedSort={selectedSort}
     />
     <div className="articles-list">
-      {articles.map(article => <ArticleListItem article={article} />)}
+      {articles.map(article => (
+        <ArticleListItem
+          key={article.key}
+          article={article}
+        />
+      ))}
     </div>
   </div>
 );

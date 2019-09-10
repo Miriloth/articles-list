@@ -5,6 +5,7 @@ import APIService from '../../../services/APIService';
 export const FETCH_ARTICLES_REQUEST = 'FETCH_ARTICLES_REQUEST';
 export const FETCH_ARTICLES_FAILURE = 'FETCH_ARTICLES_FAILURE';
 export const FETCH_ARTICLES_SUCCESS = 'FETCH_ARTICLES_SUCCESS';
+export const TOGGLE_CATEGORY_FILTER = 'TOGGLE_CATEGORY_FILTER';
 
 const APIFetchArticles = category => APIService.get(`/articles/${category}`);
 
@@ -23,13 +24,23 @@ const fetchArticlesSuccess = (articles) => ({
 });
 
 const getActiveCategories = (state) => {
-  return get(state, 'articles.list.selectedCategories', []);
+  const activeCategories = get(state, 'articles.list.selectedCategories', []);
+  const allCategories = get(state, 'articles.list.categories');
+
+  return activeCategories.length > 0
+    ? activeCategories
+    : allCategories;
 };
 
 const mergeResponses = (responses) => responses.reduce((prev, curr) => [
   ...prev,
   ...get(curr, 'data.articles', []),
 ], []);
+
+export const toggleCategoryFilter = (categoryFilter) => ({
+  type: TOGGLE_CATEGORY_FILTER,
+  categoryFilter,
+});
 
 export const fetchArticles = () => (dispatch, getState) => {
   const state = getState();
