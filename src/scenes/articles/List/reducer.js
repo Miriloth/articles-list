@@ -2,17 +2,19 @@ import * as actions from './actions';
 import get from 'lodash/get';
 
 import { articleCategoriesList } from '../utils/articleCategories';
+import { sortingOptions } from '../utils/sortingOptions';
+import { arrayToCollectionById } from '../../../helpers';
 
 const getDefaultCategories = () => articleCategoriesList;
-const getDefaultSort = () => '';
+const getDefaultSort = () => sortingOptions[0];
 
 const initialState = {
   isFetching: false,
-  articlesById: {},
-  displayedArticlesIds: [],
+  entries: {},
+  articlesIds: [],
   didInvalidate: true,
   categories: articleCategoriesList,
-  sort: '',
+  sorts: sortingOptions,
   selectedCategories: getDefaultCategories(),
   selectedSort: getDefaultSort(),
 };
@@ -29,10 +31,8 @@ const articlesListReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
-        articlesById: action.articles.map(article => ({
-          [get(article, 'id')]: article,
-        })),
-        displayedArticlesIds: action.articles.map(article => get(article, 'id')),
+        entries: arrayToCollectionById(action.articles),
+        articlesIds: action.articles.map(article => get(article, 'id')),
       });
     }
 
