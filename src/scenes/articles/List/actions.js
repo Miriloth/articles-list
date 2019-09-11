@@ -50,6 +50,6 @@ export const fetchArticles = () => (dispatch) => {
       dispatch(fetchArticlesSuccess(articles));
     })
     .catch((error) => {
-      dispatch(fetchArticlesFailure(error));
+      dispatch(fetchArticlesFailure(error.message));
     });
 };
