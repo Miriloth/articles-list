@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ReactComponent as ErrorIcon } from './icon-error.svg';
+import { ReactComponent as ErrorIcon } from '../../../../../icons/icon-error.svg';
 
 import './ErrorInfo.scss';
 

@@ -1,8 +1,31 @@
 @import '../../../../../common_styles/mixins';
+@import '../../../../../common_styles/variables';
 
 .sort-bar {
   order: 1;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 16px 0 40px;
+
+  .arrows-wrapper {
+    margin: 0 0 0 16px;
+
+    .icon {
+      fill: $text-color;
+      cursor: pointer;
+      height: 14px;
+
+      svg {
+        width: 14px;
+      }
+
+      &.active {
+        fill: $accent-color;
+      }
+    }
+  }
 
   @include phone {
     order: 2;
