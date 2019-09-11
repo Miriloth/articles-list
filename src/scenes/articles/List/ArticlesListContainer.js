@@ -6,7 +6,7 @@ import ArticlesList from './ArticlesList';
 import {
   changeSortingOption,
   fetchArticles,
-  toggleCategoryFilter
+  toggleCategoryFilter,
 } from './actions';
 import { articleModel } from '../../../models/article';
 
@@ -17,7 +17,7 @@ const ArticlesListContainer = ({
   selectedCategories,
   onToggleCategoryFilter,
   onChangeSortingOption,
-  sortingOption
+  sortingOption,
 }) => {
   useEffect(() => {
     onFetchArticles();
@@ -43,33 +43,35 @@ function mapStateToProps({
       categories,
       selectedCategories,
       sortingOption,
-    }
-  }
+    },
+  },
 }) {
-  const articles = articlesIds.map(articleId => entries[articleId]);
+  const articles = articlesIds.map((articleId) => entries[articleId]);
 
   return {
     selectedCategories,
     articles,
     categories,
     sortingOption,
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     onFetchArticles: () => dispatch(fetchArticles()),
-    onToggleCategoryFilter: categoryFilter => dispatch(toggleCategoryFilter(categoryFilter)),
-    onChangeSortingOption: sortingOption => dispatch(changeSortingOption(sortingOption)),
-  }
+    onToggleCategoryFilter: (categoryFilter) => dispatch(toggleCategoryFilter(categoryFilter)),
+    onChangeSortingOption: (sortingOption) => dispatch(changeSortingOption(sortingOption)),
+  };
 }
 
 ArticlesListContainer.propTypes = {
   onFetchArticles: PropTypes.func.isRequired,
-  selectedCategories: PropTypes.arrayOf(PropTypes.string),
-  articles: PropTypes.arrayOf(articleModel),
+  selectedCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  articles: PropTypes.arrayOf(articleModel).isRequired,
   onToggleCategoryFilter: PropTypes.func.isRequired,
   onChangeSortingOption: PropTypes.func.isRequired,
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  sortingOption: PropTypes.string.isRequired,
 };
 ArticlesListContainer.defaultProps = {};
 

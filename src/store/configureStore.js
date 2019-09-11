@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { createLogger } from 'redux-logger'
+import { createLogger } from 'redux-logger'; // eslint-disable-line
 import thunk from 'redux-thunk';
 
 import rootReducer from './rootReducer';

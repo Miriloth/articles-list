@@ -8,7 +8,7 @@ export const FETCH_ARTICLES_SUCCESS = 'FETCH_ARTICLES_SUCCESS';
 export const TOGGLE_CATEGORY_FILTER = 'TOGGLE_CATEGORY_FILTER';
 export const CHANGE_SORTING_OPTION = 'CHANGE_SORTING_OPTION';
 
-const APIFetchArticles = category => APIService.get(`/articles/${category}`);
+const APIFetchArticles = (category) => APIService.get(`/articles/${category}`);
 
 const fetchArticlesRequest = () => ({
   type: FETCH_ARTICLES_REQUEST,
@@ -54,7 +54,7 @@ export const fetchArticles = () => (dispatch, getState) => {
 
   dispatch(fetchArticlesRequest());
 
-  return Promise.all(activeCategories.map(category => APIFetchArticles(category)))
+  return Promise.all(activeCategories.map((category) => APIFetchArticles(category)))
     .then((responses) => {
       const articles = mergeResponses(responses);
 

@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import ArticleListItem from './components/ArticleListItem/ArticleListItem';
 import CategoriesFilter from './components/CategoriesFilter/CategoriesFilter';
 import SortBar from './components/SortBar/SortBar';
 
 import './ArticlesList.scss';
+import { articleModel } from '../../../models/article';
 
 const ArticlesList = ({
   articles,
@@ -13,7 +14,7 @@ const ArticlesList = ({
   selectedCategories,
   onToggleCategoryFilter,
   onChangeSortingOption,
-  sortingOption
+  sortingOption,
 }) => (
   <div className="articles-list-wrapper">
     <CategoriesFilter
@@ -26,7 +27,7 @@ const ArticlesList = ({
       onChangeSortingOption={onChangeSortingOption}
     />
     <div className="articles-list">
-      {articles.map(article => (
+      {articles.map((article) => (
         <ArticleListItem
           key={article.key}
           article={article}
@@ -36,7 +37,14 @@ const ArticlesList = ({
   </div>
 );
 
-ArticlesList.propTypes = {};
+ArticlesList.propTypes = {
+  articles: PropTypes.arrayOf(articleModel).isRequired,
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selectedCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onToggleCategoryFilter: PropTypes.func.isRequired,
+  onChangeSortingOption: PropTypes.func.isRequired,
+  sortingOption: PropTypes.string.isRequired,
+};
 ArticlesList.defaultProps = {};
 
 export default ArticlesList;

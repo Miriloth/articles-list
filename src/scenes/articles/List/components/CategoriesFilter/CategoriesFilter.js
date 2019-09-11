@@ -11,7 +11,7 @@ const CategoriesFilter = ({
   <div
     className="categories-filter"
   >
-    {categories.map(category => {
+    {categories.map((category) => {
       const isActive = selectedCategories.indexOf(category) > -1;
 
       return (
@@ -21,14 +21,14 @@ const CategoriesFilter = ({
         >
           {category}
         </div>
-      )
+      );
     })}
   </div>
 );
 
 CategoriesFilter.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.string),
-  selectedCategories: PropTypes.arrayOf(PropTypes.string),
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selectedCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
   onToggleCategoryFilter: PropTypes.func.isRequired,
 };
 CategoriesFilter.defaultProps = {};

@@ -11,4 +11,4 @@ const articleModel = PropTypes.shape({
 
 export {
   articleModel,
-}
+};

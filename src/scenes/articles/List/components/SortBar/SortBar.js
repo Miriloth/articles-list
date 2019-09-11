@@ -5,7 +5,10 @@ import { sortingOptions } from '../../../utils/sortingOptions';
 
 import './SortBar.scss';
 
-const SortBar = ({ onChangeSortingOption, sortingOption }) => (
+const SortBar = ({
+  onChangeSortingOption,
+  // sortingOption
+}) => (
   <div className="sort-bar">
     Sort by date
     <div onClick={() => onChangeSortingOption(sortingOptions.ASC)}>

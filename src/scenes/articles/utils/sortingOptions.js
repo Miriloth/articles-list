@@ -1,8 +1,8 @@
 const sortingOptions = {
   ASC: 'asc',
-  DESC: 'desc'
+  DESC: 'desc',
 };
 
 export {
   sortingOptions,
-}
+};
