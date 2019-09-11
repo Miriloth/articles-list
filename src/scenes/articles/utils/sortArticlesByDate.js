@@ -1,4 +1,3 @@
-import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
 import { sortingOptions } from './sortingOptions';
 
@@ -20,8 +19,8 @@ const correctDate = (dateString) => Object.values(incorrectMonths)
       : result
   ), dateString);
 
-const sortArticlesByDate = (entries, sortingOption) => {
-  const articles = map(entries, (articleEntry) => articleEntry);
+const sortArticlesByDate = (entries, articlesIds, sortingOption) => {
+  const articles = articlesIds.map((articleId) => entries[articleId]);
 
   const sortedArray = sortBy(articles, [
     (article) => new Date(correctDate(article.date)).getTime(),

@@ -30,12 +30,13 @@ const articlesListReducer = (state = initialState, action) => {
 
     case actions.FETCH_ARTICLES_SUCCESS: {
       const entries = arrayToCollectionById(action.articles);
+      const articlesIds = action.articles.map((article) => article.id);
 
       return {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        articlesIds: sortArticlesByDate(entries, state.sortingOption),
+        articlesIds: sortArticlesByDate(entries, articlesIds, state.sortingOption),
         entries,
       };
     }
@@ -50,11 +51,12 @@ const articlesListReducer = (state = initialState, action) => {
 
     case actions.TOGGLE_CATEGORY_FILTER: {
       const newCategoriesArray = xor(state.selectedCategories, [action.categoryFilter]);
+      const filteredArticlesIds = filterArticlesByCategories(newCategoriesArray, state.entries);
 
       return {
         ...state,
         selectedCategories: newCategoriesArray,
-        articlesIds: filterArticlesByCategories(newCategoriesArray, state.entries),
+        articlesIds: sortArticlesByDate(state.entries, filteredArticlesIds, state.sortingOption),
       };
     }
 
@@ -62,7 +64,7 @@ const articlesListReducer = (state = initialState, action) => {
       return {
         ...state,
         sortingOption: action.sortingOption,
-        articlesIds: sortArticlesByDate(state.entries, action.sortingOption),
+        articlesIds: sortArticlesByDate(state.entries, state.articlesIds, action.sortingOption),
       };
     }
 
