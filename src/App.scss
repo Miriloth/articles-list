@@ -10,3 +10,9 @@
     padding: 4px;
   }
 }
+
+.hide-phone-down {
+  @include phone {
+    display: none;
+  }
+}

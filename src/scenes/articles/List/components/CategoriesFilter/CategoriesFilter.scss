@@ -10,27 +10,37 @@
     margin-bottom: 8px;
   }
 
-  .category-filter-item {
-    text-transform: capitalize;
-    cursor: pointer;
-    padding: 0 0 4px 4px;
-    transition: background-color .3s;
-    border-radius: 4px;
+  .categories-filter-wrapper {
 
-    .checkbox {
-      margin-right: 8px;
+    .category-filter-item {
+      display: flex;
+      text-transform: capitalize;
+      cursor: pointer;
+      padding: 4px;
+      transition: background-color .3s;
+      border-radius: 4px;
+      align-items: center;
+
+      .checkbox {
+        margin-right: 8px;
+      }
+
+      &:hover {
+        background-color: $bg-color-2;
+      }
+
+      &.active {
+        color: $accent-color;
+      }
     }
 
-    &:hover {
-      background-color: $bg-color-2;
-    }
-
-    &.active {
-      color: $accent-color;
+    @include phone {
+      display: flex;
     }
   }
 
   @include phone {
     order: 1;
+    width: auto;
   }
 }

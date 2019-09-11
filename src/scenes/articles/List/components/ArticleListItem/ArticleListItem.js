@@ -23,7 +23,7 @@ const ArticleListItem = ({ article }) => (
         <h3 className="article-header-title">{article.title}</h3>
         <h4 className="article-header-date">{article.date}</h4>
       </div>
-      <div className="article-preamble-wrapper">
+      <div className="article-preamble-wrapper hide-phone-down">
         <p>{article.preamble}</p>
       </div>
     </div>

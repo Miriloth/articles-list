@@ -12,20 +12,22 @@ const CategoriesFilter = ({
     className="categories-filter"
   >
     <h4 className="categories-filter-header">Data sources</h4>
-    {categories.map((category) => {
-      const isActive = selectedCategories.indexOf(category) > -1;
+    <div className="categories-filter-wrapper">
+      {categories.map((category) => {
+        const isActive = selectedCategories.indexOf(category) > -1;
 
-      return (
-        <div
-          key={category}
-          onClick={() => onToggleCategoryFilter(category)}
-          className={`category-filter-item ${isActive ? 'active' : ''}`}
-        >
-          <input checked={isActive} className="checkbox" type="checkbox" />
-          {category}
-        </div>
-      );
-    })}
+        return (
+          <div
+            key={category}
+            onClick={() => onToggleCategoryFilter(category)}
+            className={`category-filter-item ${isActive ? 'active' : ''}`}
+          >
+            <input checked={isActive} className="checkbox" type="checkbox" />
+            {category}
+          </div>
+        );
+      })}
+    </div>
   </div>
 );
 
