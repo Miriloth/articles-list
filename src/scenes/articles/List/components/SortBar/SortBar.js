@@ -12,7 +12,7 @@ const SortBar = ({
   sortingOption,
 }) => (
   <div className="sort-bar">
-    Sort by date
+    <h4>Sort by date</h4>
     <div className="arrows-wrapper">
       <div
         className={`icon ${sortingOption === sortingOptions.DESC ? 'active' : ''}`}

@@ -11,6 +11,7 @@ const CategoriesFilter = ({
   <div
     className="categories-filter"
   >
+    <h4 className="categories-filter-header">Data sources</h4>
     {categories.map((category) => {
       const isActive = selectedCategories.indexOf(category) > -1;
 
@@ -20,6 +21,7 @@ const CategoriesFilter = ({
           onClick={() => onToggleCategoryFilter(category)}
           className={`category-filter-item ${isActive ? 'active' : ''}`}
         >
+          <input checked={isActive} className="checkbox" type="checkbox" />
           {category}
         </div>
       );

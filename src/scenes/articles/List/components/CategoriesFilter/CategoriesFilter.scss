@@ -1,12 +1,32 @@
 @import '../../../../../common_styles/mixins';
+@import '../../../../../common_styles/variables';
 
 .categories-filter {
   order: 2;
+  width: 150px;
+  padding-right: 8px;
+
+  .categories-filter-header {
+    margin-bottom: 8px;
+  }
 
   .category-filter-item {
+    text-transform: capitalize;
+    cursor: pointer;
+    padding: 0 0 4px 4px;
+    transition: background-color .3s;
+    border-radius: 4px;
+
+    .checkbox {
+      margin-right: 8px;
+    }
+
+    &:hover {
+      background-color: $bg-color-2;
+    }
 
     &.active {
-      color: green;
+      color: $accent-color;
     }
   }
 
