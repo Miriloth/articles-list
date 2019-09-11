@@ -16,6 +16,7 @@ const CategoriesFilter = ({
 
       return (
         <div
+          key={category}
           onClick={() => onToggleCategoryFilter(category)}
           className={`category-filter-item ${isActive ? 'active' : ''}`}
         >

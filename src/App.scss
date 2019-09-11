@@ -1,0 +1,12 @@
+@import './common_styles/mixins';
+
+.app-container {
+  width: 100%;
+  max-width: 1000px;
+  padding: 24px;
+  margin: 0 auto;
+
+  @include phone {
+    padding: 4px;
+  }
+}

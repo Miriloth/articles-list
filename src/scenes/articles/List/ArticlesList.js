@@ -16,7 +16,7 @@ const ArticlesList = ({
   onChangeSortingOption,
   sortingOption,
 }) => (
-  <div className="articles-list-wrapper">
+  <div className="app-container articles-list-wrapper">
     <CategoriesFilter
       categories={categories}
       selectedCategories={selectedCategories}
