@@ -1,15 +1,7 @@
-const sortingOptions = [
-  {
-    label: 'Publication date',
-    key: 'publicationDate',
-    asc: true,
-  },
-  {
-    label: 'Publication date',
-    key: 'publicationDate',
-    asc: false,
-  },
-];
+const sortingOptions = {
+  ASC: 'asc',
+  DESC: 'desc'
+};
 
 export {
   sortingOptions,

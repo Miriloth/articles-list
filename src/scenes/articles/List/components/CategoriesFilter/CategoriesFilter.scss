@@ -3,6 +3,13 @@
 .categories-filter {
   order: 2;
 
+  .category-filter-item {
+
+    &.active {
+      color: green;
+    }
+  }
+
   @include phone {
     order: 1;
   }

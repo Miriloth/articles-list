@@ -6,6 +6,7 @@ export const FETCH_ARTICLES_REQUEST = 'FETCH_ARTICLES_REQUEST';
 export const FETCH_ARTICLES_FAILURE = 'FETCH_ARTICLES_FAILURE';
 export const FETCH_ARTICLES_SUCCESS = 'FETCH_ARTICLES_SUCCESS';
 export const TOGGLE_CATEGORY_FILTER = 'TOGGLE_CATEGORY_FILTER';
+export const CHANGE_SORTING_OPTION = 'CHANGE_SORTING_OPTION';
 
 const APIFetchArticles = category => APIService.get(`/articles/${category}`);
 
@@ -40,6 +41,11 @@ const mergeResponses = (responses) => responses.reduce((prev, curr) => [
 export const toggleCategoryFilter = (categoryFilter) => ({
   type: TOGGLE_CATEGORY_FILTER,
   categoryFilter,
+});
+
+export const changeSortingOption = (sortingOption) => ({
+  type: CHANGE_SORTING_OPTION,
+  sortingOption,
 });
 
 export const fetchArticles = () => (dispatch, getState) => {

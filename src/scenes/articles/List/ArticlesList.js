@@ -10,10 +10,10 @@ import './ArticlesList.scss';
 const ArticlesList = ({
   articles,
   categories,
-  sorts,
   selectedCategories,
-  selectedSort,
   onToggleCategoryFilter,
+  onChangeSortingOption,
+  sortingOption
 }) => (
   <div className="articles-list-wrapper">
     <CategoriesFilter
@@ -22,8 +22,8 @@ const ArticlesList = ({
       onToggleCategoryFilter={onToggleCategoryFilter}
     />
     <SortBar
-      sorts={sorts}
-      selectedSort={selectedSort}
+      sortingOption={sortingOption}
+      onChangeSortingOption={onChangeSortingOption}
     />
     <div className="articles-list">
       {articles.map(article => (

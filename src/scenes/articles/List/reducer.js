@@ -1,12 +1,10 @@
 import * as actions from './actions';
-import get from 'lodash/get';
 import xor from 'lodash/xor';
 
 import { articleCategoriesList } from '../utils/articleCategories';
 import { sortingOptions } from '../utils/sortingOptions';
 import { arrayToCollectionById } from '../../../helpers';
-
-const getDefaultSort = () => sortingOptions[0];
+import { sortArticlesByDate } from '../utils/sortArticlesByDate';
 
 const initialState = {
   isFetching: false,
@@ -15,9 +13,8 @@ const initialState = {
   didInvalidate: true,
   error: null,
   categories: articleCategoriesList,
-  sorts: sortingOptions,
   selectedCategories: [],
-  selectedSort: getDefaultSort(),
+  sortingOption: sortingOptions.ASC,
 };
 
 const articlesListReducer = (state = initialState, action) => {
@@ -30,11 +27,13 @@ const articlesListReducer = (state = initialState, action) => {
     }
 
     case actions.FETCH_ARTICLES_SUCCESS: {
+      const entries = arrayToCollectionById(action.articles);
+
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
-        entries: arrayToCollectionById(action.articles),
-        articlesIds: action.articles.map(article => get(article, 'id')),
+        articlesIds: sortArticlesByDate(entries, state.sortingOption),
+        entries,
       });
     }
 
@@ -48,6 +47,13 @@ const articlesListReducer = (state = initialState, action) => {
     case actions.TOGGLE_CATEGORY_FILTER: {
       return Object.assign({}, state, {
         selectedCategories: xor(state.selectedCategories, [action.categoryFilter]),
+      })
+    }
+
+    case actions.CHANGE_SORTING_OPTION: {
+      return Object.assign({}, state, {
+        sortingOption: action.sortingOption,
+        articlesIds: sortArticlesByDate(state.entries, action.sortingOption)
       })
     }
 

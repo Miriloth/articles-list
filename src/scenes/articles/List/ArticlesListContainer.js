@@ -3,17 +3,21 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import ArticlesList from './ArticlesList';
-import { fetchArticles, toggleCategoryFilter } from './actions';
+import {
+  changeSortingOption,
+  fetchArticles,
+  toggleCategoryFilter
+} from './actions';
 import { articleModel } from '../../../models/article';
 
 const ArticlesListContainer = ({
   onFetchArticles,
   articles,
   categories,
-  sorts,
   selectedCategories,
-  selectedSort,
   onToggleCategoryFilter,
+  onChangeSortingOption,
+  sortingOption
 }) => {
   useEffect(() => {
     onFetchArticles();
@@ -23,10 +27,10 @@ const ArticlesListContainer = ({
     <ArticlesList
       articles={articles}
       categories={categories}
-      sorts={sorts}
       selectedCategories={selectedCategories}
-      selectedSort={selectedSort}
+      sortingOption={sortingOption}
       onToggleCategoryFilter={onToggleCategoryFilter}
+      onChangeSortingOption={onChangeSortingOption}
     />
   );
 };
@@ -37,9 +41,8 @@ function mapStateToProps({
       entries,
       articlesIds,
       categories,
-      sorts,
       selectedCategories,
-      selectedSort,
+      sortingOption,
     }
   }
 }) {
@@ -49,15 +52,15 @@ function mapStateToProps({
     selectedCategories,
     articles,
     categories,
-    sorts,
-    selectedSort,
+    sortingOption,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     onFetchArticles: () => dispatch(fetchArticles()),
-    onToggleCategoryFilter: (categoryFilter) => dispatch(toggleCategoryFilter(categoryFilter)),
+    onToggleCategoryFilter: categoryFilter => dispatch(toggleCategoryFilter(categoryFilter)),
+    onChangeSortingOption: sortingOption => dispatch(changeSortingOption(sortingOption)),
   }
 }
 
@@ -66,6 +69,7 @@ ArticlesListContainer.propTypes = {
   selectedCategories: PropTypes.arrayOf(PropTypes.string),
   articles: PropTypes.arrayOf(articleModel),
   onToggleCategoryFilter: PropTypes.func.isRequired,
+  onChangeSortingOption: PropTypes.func.isRequired,
 };
 ArticlesListContainer.defaultProps = {};
 
