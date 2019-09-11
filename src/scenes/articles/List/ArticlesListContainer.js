@@ -18,6 +18,7 @@ const ArticlesListContainer = ({
   onToggleCategoryFilter,
   onChangeSortingOption,
   sortingOption,
+  error,
 }) => {
   useEffect(() => {
     onFetchArticles();
@@ -31,6 +32,8 @@ const ArticlesListContainer = ({
       sortingOption={sortingOption}
       onToggleCategoryFilter={onToggleCategoryFilter}
       onChangeSortingOption={onChangeSortingOption}
+      error={error}
+      onFetchArticles={onFetchArticles}
     />
   );
 };
@@ -43,6 +46,7 @@ function mapStateToProps({
       categories,
       selectedCategories,
       sortingOption,
+      error,
     },
   },
 }) {
@@ -53,6 +57,7 @@ function mapStateToProps({
     articles,
     categories,
     sortingOption,
+    error,
   };
 }
 
@@ -72,7 +77,10 @@ ArticlesListContainer.propTypes = {
   onChangeSortingOption: PropTypes.func.isRequired,
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
   sortingOption: PropTypes.string.isRequired,
+  error: PropTypes.string,
 };
-ArticlesListContainer.defaultProps = {};
+ArticlesListContainer.defaultProps = {
+  error: null,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticlesListContainer);

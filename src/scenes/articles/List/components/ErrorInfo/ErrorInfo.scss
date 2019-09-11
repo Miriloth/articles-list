@@ -1,0 +1,36 @@
+@import '../../../../../common_styles/variables';
+
+.error-info {
+  width: 100%;
+  text-align: center;
+  font-weight: 200;
+  margin: 40px 0 0 0;
+
+  .error-message {
+    margin: 8px 0;
+  }
+
+  .icon {
+    svg {
+      width: 30px;
+      fill: $text-color;
+    }
+  }
+
+  .button {
+    border: none;
+    background: $accent-color;
+    color: white;
+    border-radius: 4px;
+    padding: 8px 24px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: box-shadow .3s;
+    transform: scale(1);
+
+    &:hover {
+      box-shadow: 0 0 2px 1px #a0a0a0;
+    }
+  }
+}

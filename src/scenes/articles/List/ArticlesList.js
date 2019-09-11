@@ -7,6 +7,7 @@ import SortBar from './components/SortBar/SortBar';
 
 import './ArticlesList.scss';
 import { articleModel } from '../../../models/article';
+import ErrorInfo from './components/ErrorInfo/ErrorInfo';
 
 const ArticlesList = ({
   articles,
@@ -15,6 +16,8 @@ const ArticlesList = ({
   onToggleCategoryFilter,
   onChangeSortingOption,
   sortingOption,
+  error,
+  onFetchArticles,
 }) => (
   <div className="app-container articles-list-wrapper">
     <CategoriesFilter
@@ -27,12 +30,14 @@ const ArticlesList = ({
       onChangeSortingOption={onChangeSortingOption}
     />
     <div className="articles-list">
-      {articles.map((article) => (
-        <ArticleListItem
-          key={article.key}
-          article={article}
-        />
-      ))}
+      {!error
+        ? articles.map((article) => (
+          <ArticleListItem
+            key={article.key}
+            article={article}
+          />
+        ))
+        : <ErrorInfo reloadArticles={onFetchArticles} />}
     </div>
   </div>
 );
@@ -44,7 +49,11 @@ ArticlesList.propTypes = {
   onToggleCategoryFilter: PropTypes.func.isRequired,
   onChangeSortingOption: PropTypes.func.isRequired,
   sortingOption: PropTypes.string.isRequired,
+  error: PropTypes.string,
+  onFetchArticles: PropTypes.func.isRequired,
 };
-ArticlesList.defaultProps = {};
+ArticlesList.defaultProps = {
+  error: null,
+};
 
 export default ArticlesList;
