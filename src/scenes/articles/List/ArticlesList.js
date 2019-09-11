@@ -33,7 +33,7 @@ const ArticlesList = ({
       {!error
         ? articles.map((article) => (
           <ArticleListItem
-            key={article.key}
+            key={article.id}
             article={article}
           />
         ))

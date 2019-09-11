@@ -22,7 +22,7 @@ const ArticlesListContainer = ({
 }) => {
   useEffect(() => {
     onFetchArticles();
-  }, [onFetchArticles, selectedCategories]);
+  }, [onFetchArticles]);
 
   return (
     <ArticlesList

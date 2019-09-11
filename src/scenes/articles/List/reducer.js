@@ -5,6 +5,7 @@ import { articleCategoriesList } from '../utils/articleCategories';
 import { sortingOptions } from '../utils/sortingOptions';
 import { arrayToCollectionById } from '../../../helpers';
 import { sortArticlesByDate } from '../utils/sortArticlesByDate';
+import { filterArticlesByCategories } from '../utils/filterArticlesByCategories';
 
 const initialState = {
   isFetching: false,
@@ -48,9 +49,12 @@ const articlesListReducer = (state = initialState, action) => {
     }
 
     case actions.TOGGLE_CATEGORY_FILTER: {
+      const newCategoriesArray = xor(state.selectedCategories, [action.categoryFilter]);
+
       return {
         ...state,
-        selectedCategories: xor(state.selectedCategories, [action.categoryFilter]),
+        selectedCategories: newCategoriesArray,
+        articlesIds: filterArticlesByCategories(newCategoriesArray, state.entries),
       };
     }
 

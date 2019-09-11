@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 
 import APIService from '../../../services/APIService';
+import { articleCategoriesListAPI } from '../utils/articleCategories';
 
 export const FETCH_ARTICLES_REQUEST = 'FETCH_ARTICLES_REQUEST';
 export const FETCH_ARTICLES_FAILURE = 'FETCH_ARTICLES_FAILURE';
@@ -24,15 +25,6 @@ const fetchArticlesSuccess = (articles) => ({
   articles,
 });
 
-const getActiveCategories = (state) => {
-  const activeCategories = get(state, 'articles.list.selectedCategories', []);
-  const allCategories = get(state, 'articles.list.categories');
-
-  return activeCategories.length > 0
-    ? activeCategories
-    : allCategories;
-};
-
 const mergeResponses = (responses) => responses.reduce((prev, curr) => [
   ...prev,
   ...get(curr, 'data.articles', []),
@@ -48,13 +40,10 @@ export const changeSortingOption = (sortingOption) => ({
   sortingOption,
 });
 
-export const fetchArticles = () => (dispatch, getState) => {
-  const state = getState();
-  const activeCategories = getActiveCategories(state);
-
+export const fetchArticles = () => (dispatch) => {
   dispatch(fetchArticlesRequest());
 
-  return Promise.all(activeCategories.map((category) => APIFetchArticles(category)))
+  return Promise.all(articleCategoriesListAPI.map((category) => APIFetchArticles(category)))
     .then((responses) => {
       const articles = mergeResponses(responses);
 

@@ -1,14 +1,19 @@
+const articleCategoriesListAPI = [
+  'sports', 'fashion',
+];
+
 const articleCategories = {
-  SPORTS: 'sports',
+  SPORT: 'sport',
   FASHION: 'fashion',
 };
 
 const articleCategoriesList = [
-  articleCategories.SPORTS,
+  articleCategories.SPORT,
   articleCategories.FASHION,
 ];
 
 export {
   articleCategories,
   articleCategoriesList,
+  articleCategoriesListAPI,
 };

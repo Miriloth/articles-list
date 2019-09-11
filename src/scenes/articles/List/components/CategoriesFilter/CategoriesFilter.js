@@ -22,7 +22,12 @@ const CategoriesFilter = ({
             onClick={() => onToggleCategoryFilter(category)}
             className={`category-filter-item ${isActive ? 'active' : ''}`}
           >
-            <input checked={isActive} className="checkbox" type="checkbox" />
+            <input
+              checked={isActive}
+              className="checkbox"
+              type="checkbox"
+              readOnly
+            />
             {category}
           </div>
         );
