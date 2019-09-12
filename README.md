@@ -1,5 +1,8 @@
 ## Articles list
  
+### Installation
+Run `yarn` and `yarn start`
+ 
 ### Requirements
 - [x] displaying list of articles
 - [x] filtering articles by the category
